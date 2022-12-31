@@ -6,12 +6,17 @@ function App() {
   const dayOfWeek = today.toLocaleString("en-US", { weekday: "long" });
   const [toDos, setTodos] = useState([]);
   const [toDo, setTodo] = useState("");
+  const date = today.getDate()+ '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+  const time= today.getHours()+':'+today.getMinutes() ;
+  let hours = today.getHours();
+  let ampm = (hours < 12) ? "AM" : "PM";
+  let inputTime=date+','+'('+time+' '+ampm+')';
 
   const handleClick = () => {
     if (toDo !== "") {
       setTodos([
         ...toDos,
-        { id: Date.now(), text: toDo, status: false, close: false },
+        { id: Date.now(), text: toDo, status: false,tyme:inputTime, close: false },
       ]); //toDos have object array
       setTodo("");
     }
@@ -29,6 +34,7 @@ function App() {
                   if (obj.status) {
                     return (
                       <div className="input m-2 ">
+                        <div className="text-secondary text-right">{obj.tyme}</div>
                         <input
                           value={obj.text}
                           type="text"
@@ -73,6 +79,7 @@ function App() {
                         if (item.close === false && item.status === false) {
                           return (
                             <div className="todos">
+                              <div className="text-secondary text-right">{obj.tyme}</div>
                               <div className="todo m-2">
                                 <div className="left">
                                   <input
@@ -127,6 +134,7 @@ function App() {
                   if (obj.close && !obj.status) {
                     return (
                       <div className="input m-2">
+                        <div className="text-secondary text-right">{obj.tyme}</div>
                         <input
                           value={obj.text}
                           type="text"
