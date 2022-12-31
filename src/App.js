@@ -79,7 +79,7 @@ function App() {
                         if (item.close === false && item.status === false) {
                           return (
                             <div className="todos">
-                              <div className="text-secondary text-right">{obj.tyme}</div>
+                              <div className="text-secondary text-right">{item.tyme}</div>
                               <div className="todo m-2">
                                 <div className="left">
                                   <input
